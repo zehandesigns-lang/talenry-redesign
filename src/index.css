@@ -1,0 +1,258 @@
+@import 'tailwindcss';
+
+@font-face {
+  font-family: 'LT Cushion';
+  src: url('./assets/fonts/LTCushion-VF.ttf') format('truetype');
+  font-weight: 300 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  --font-sans: 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'LT Cushion', ui-serif, Georgia, serif;
+
+  /* Type sizes measured against the 1440px design frames (1rem = 16px there) */
+  --text-body: 1.171875rem;
+  --text-body--line-height: normal;
+  --text-action: 1.0546875rem;
+  --text-action--line-height: normal;
+  --text-detail: 0.90625rem;
+  --text-detail--line-height: normal;
+  --text-caption: 0.8203125rem;
+  --text-caption--line-height: normal;
+
+  /* Dashboard sizes, measured against its 1512px design frame */
+  --text-ui-sm: 0.9375rem;
+  --text-ui-sm--line-height: normal;
+  --text-ui: 1rem;
+  --text-ui--line-height: normal;
+  --text-ui-lg: 1.125rem;
+  --text-ui-lg--line-height: normal;
+
+  --color-ink: #000;
+  --color-muted: #919397;
+  --color-subtle: #6f6f6f;
+  --color-faint: #8e8e93;
+  --color-line: #d7d9dc;
+  --color-chip: #e4e4e7;
+  --color-track: #f4f4f5;
+  --color-danger: #b42318;
+
+  --color-sidebar: #f7f5f1;
+  --color-sidebar-line: #e9e7e3;
+  --color-nav: #3c3c41;
+  --color-nav-active: #101013;
+  --color-meta: #71737b;
+  --color-soft: #969aa2;
+  --color-divider: #d2d4da;
+  --color-tag: #f2f2f2;
+  --color-control: #c8c8c8;
+  --color-chip-line: #e8e8e8;
+  --color-link: #24366e;
+  /* The picked row in a filter menu */
+  --color-selected: #eeece7;
+
+  /* Onboarding → job board: the painting fades off the blurred board, then listings rise into place */
+  --animate-backdrop-out: backdrop-out 0.9s ease-in-out 0.15s both;
+  --animate-card-in: card-in 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+
+  @keyframes backdrop-out {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+
+  @keyframes card-in {
+    from {
+      opacity: 0;
+      transform: translateY(24px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* Sign-up: a ring pulses off the Google button when a control the prototype doesn't wire up is used */
+  --animate-nudge: nudge 0.9s ease-out 2;
+
+  @keyframes nudge {
+    from {
+      box-shadow: 0 0 0 0 rgb(0 0 0 / 0.3);
+    }
+    to {
+      box-shadow: 0 0 0 0.875rem rgb(0 0 0 / 0);
+    }
+  }
+
+  /* Finding-matches screen: the plane drifts, each status line eases in, the bar fills once */
+  --animate-plane-float: plane-float 2.4s ease-in-out infinite;
+  --animate-status-in: status-in 0.45s ease-out both;
+  --animate-loader-fill: loader-fill linear forwards;
+
+  @keyframes plane-float {
+    0%,
+    100% {
+      transform: translate(0, 0) rotate(0deg);
+    }
+    50% {
+      transform: translate(6px, -6px) rotate(-4deg);
+    }
+  }
+
+  @keyframes status-in {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @keyframes loader-fill {
+    from {
+      transform: scaleX(0);
+    }
+    to {
+      transform: scaleX(1);
+    }
+  }
+
+  /* LinkedIn screenshot explainer: one 6s loop of select → capture → upload → fill */
+  --animate-shot-select: shot-select 6s ease-in-out infinite;
+  --animate-shot-flash: shot-flash 6s linear infinite;
+  --animate-shot-fly: shot-fly 6s ease-in-out infinite;
+  --animate-shot-check: shot-check 6s ease-out infinite;
+  --animate-shot-fill: shot-fill 6s ease-out infinite;
+
+  @keyframes shot-select {
+    0%,
+    12% {
+      opacity: 0;
+      transform: scale(0);
+    }
+    14% {
+      opacity: 1;
+      transform: scale(0.04);
+    }
+    32%,
+    38% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    42%,
+    100% {
+      opacity: 0;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes shot-flash {
+    0%,
+    37% {
+      opacity: 0;
+    }
+    39% {
+      opacity: 0.9;
+    }
+    44%,
+    100% {
+      opacity: 0;
+    }
+  }
+
+  @keyframes shot-fly {
+    0%,
+    39% {
+      opacity: 0;
+      transform: translate(0, 0) scale(1);
+    }
+    41% {
+      opacity: 1;
+      transform: translate(0, 0) scale(1);
+    }
+    60%,
+    92% {
+      opacity: 1;
+      transform: translate(207px, 22px) scale(0.42);
+    }
+    97%,
+    100% {
+      opacity: 0;
+      transform: translate(207px, 22px) scale(0.42);
+    }
+  }
+
+  @keyframes shot-check {
+    0%,
+    60% {
+      opacity: 0;
+      transform: scale(0.5);
+    }
+    65%,
+    92% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    97%,
+    100% {
+      opacity: 0;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes shot-fill {
+    0%,
+    66% {
+      opacity: 1;
+      transform: scaleX(0);
+    }
+    78%,
+    92% {
+      opacity: 1;
+      transform: scaleX(1);
+    }
+    97%,
+    100% {
+      opacity: 0;
+      transform: scaleX(1);
+    }
+  }
+}
+
+@layer base {
+  /* Every size is in rem, so these values scale the whole UI.
+     At design size (100%) it reads too large on a laptop; the dashboard sits 10% larger than onboarding. */
+  @media (width >= 40rem) {
+    html {
+      font-size: 70%;
+    }
+
+    html[data-screen='dashboard'] {
+      font-size: 77%;
+    }
+
+    /* The case study is a reading page, sized like the reference layout rather than the app */
+    html[data-page='case-study'] {
+      font-size: 100%;
+    }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html[data-page='case-study'] {
+      scroll-behavior: smooth;
+    }
+  }
+
+  body {
+    color: var(--color-ink);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
